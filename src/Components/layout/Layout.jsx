@@ -12,8 +12,10 @@ import HowItWorks from '../../Pages/HowItWorks'
 import Register from '../../Pages/Register'
 import About from '../../Pages/About/MainAbout'
 import PostJob from '../../Pages/PostJob'
+import ContactUs from '../../Pages/Contact/ContactUs'
 
 import './layout.css'
+import LiftedPage from '../../Pages/Contact/LiftedPage'
 
 // Component for pages with header and footer
 function LayoutWithHeaderFooter() {
@@ -41,6 +43,9 @@ function Layout() {
           <Route path="about" element={<About />} />
           <Route path="post-job" element={<PostJob />} />
           <Route path="register" element={<Register />} />
+          <Route path="contact" element={<ContactUs />} />
+          <Route path="/lifted" element={<LiftedPage />} />
+
           {/* 404 Route with Layout */}
           <Route path="*" element={
             <div className="container py-5 text-center">
