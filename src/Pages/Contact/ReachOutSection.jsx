@@ -40,7 +40,7 @@ function ReachOutSection() {
               <div className="icon-circle">📰</div>
               <div className="contact-text">
                 <h3>Press Inquiries</h3>
-                <p className="green-text">press@upwork.com</p>
+                <p className="green-text">press@herfa.com</p>
               </div>
             </a>
           </div>
