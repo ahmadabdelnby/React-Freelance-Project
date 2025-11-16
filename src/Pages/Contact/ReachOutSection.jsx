@@ -28,7 +28,7 @@ function ReachOutSection() {
             >
               <div className="icon-circle">🏢</div>
               <div className="contact-text">
-                <h3>Lifted, an Upwork Company</h3>
+                <h3>Lifted, a Herfa Company</h3>
                 <p className="green-text">Contact Us</p>
               </div>
             </a>
