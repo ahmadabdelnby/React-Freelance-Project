@@ -9,8 +9,11 @@
 
 /* Main Navbar */
 .main-navbar {
-  padding: 12px 0;
+  padding: 12px 24px;
   background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .main-navbar .navbar-brand {
@@ -27,11 +30,16 @@
 .logo-icon {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  background: linear-gradient(135deg, #000000, #000000);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.logo-icon:hover {
+  background: #108d00 !important;
+  transform: translateY(-1px);
 }
 
 .logo-symbol {
@@ -76,7 +84,7 @@
 }
 
 .nav-link-custom:hover {
-  color: #6c5ce7 !important;
+  color: #14a800 !important;
   background-color: #f8f9fa;
 }
 
@@ -104,14 +112,14 @@
 }
 
 .language-link {
-  color: #6c5ce7 !important;
+  color: #14a800 !important;
   font-weight: 600 !important;
   padding: 8px 12px !important;
   text-decoration: none !important;
 }
 
 .post-job-btn {
-  background: #6c5ce7 !important;
+  background: #000000 !important;
   border: none !important;
   padding: 8px 20px !important;
   font-weight: 600 !important;
@@ -121,109 +129,8 @@
 }
 
 .post-job-btn:hover {
-  background: #5a4cdb !important;
+  background: #108d00 !important;
   transform: translateY(-1px);
-}
-
-/* Categories Navigation */
-.categories-navbar {
-  background: #f8f9fa;
-  border-top: 1px solid #e9ecef;
-  padding: 12px 0;
-}
-
-.categories-scroll {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 0 8px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  scroll-behavior: smooth;
-}
-
-.categories-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-/* Categories Container with Arrows */
-.categories-container {
-  position: relative;
-}
-
-.categories-scroll {
-  flex: 1;
-  margin: 0 8px;
-}
-
-/* Category Arrow Buttons */
-.category-arrow {
-  background: white;
-  border: 1px solid #e9ecef;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: #636e72;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
-}
-
-.category-arrow:hover {
-  background: #6c5ce7;
-  color: white;
-  border-color: #6c5ce7;
-  transform: translateY(-1px);
-}
-
-.category-arrow:active {
-  transform: translateY(0);
-}
-
-.category-arrow-left {
-  margin-right: 8px;
-}
-
-.category-arrow-right {
-  margin-left: 8px;
-}
-
-.category-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #636e72;
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.category-item:hover {
-  color: #6c5ce7;
-  background-color: white;
-  transform: translateY(-1px);
-}
-
-.category-icon {
-  font-size: 16px;
-}
-
-.dropdown-category {
-  position: relative;
-}
-
-.dropdown-arrow {
-  font-size: 10px;
-  margin-left: 4px;
 }
 
 /* Responsive Design */
@@ -236,15 +143,6 @@
   .right-nav {
     margin-top: 16px;
     flex-wrap: wrap;
-  }
-  
-  .categories-scroll {
-    gap: 12px;
-  }
-  
-  .category-item {
-    font-size: 13px;
-    padding: 6px 8px;
   }
 }
 
@@ -261,25 +159,11 @@
   .logo-symbol {
     font-size: 18px;
   }
-  
-  .categories-navbar {
-    padding: 8px 0;
-  }
-  
-  .categories-scroll {
-    gap: 8px;
-  }
-  
-  .category-arrow {
-    width: 32px;
-    height: 32px;
-    font-size: 12px;
-  }
 }
 
 @media (max-width: 576px) {
   .main-navbar {
-    padding: 8px 0;
+    padding: 8px 16px;
   }
   
   .post-job-btn {

@@ -1,50 +1,43 @@
 import React from 'react'
-import { FaBriefcase, FaUsers } from 'react-icons/fa'
+import './HeroSection.css'
+import { FaSearch } from 'react-icons/fa'
+
+const HERO_IMAGE = 'https://res.cloudinary.com/upwork-cloud-acquisition-prod/image/upload/q_auto,h_630/v1741896805/brontes/hero/ApartmentCoder.jpg'
 
 function HeroSection() {
   return (
-        <section className="hero-section bg-light py-5">
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-lg-6">
-                <h1 className="display-4 fw-bold text-primary mb-4">
-                  Find the Perfect Freelancer for Your Project
-                </h1>
-                <p className="lead mb-4">
-                  Connect with skilled professionals from around the world. Get your projects done faster and better.
-                </p>
-                <div className="d-flex gap-3">
-                  <button className="btn btn-primary btn-lg">
-                    <FaBriefcase className="me-2" />
-                    Post a Job
-                  </button>
-                  <button className="btn btn-outline-primary btn-lg">
-                    <FaUsers className="me-2" />
-                    Find Freelancers
-                  </button>
-                </div>
+    <section className="hero-variant">
+      <div className="hero-card">
+        <div className="hero-bg" style={{ backgroundImage: `url(${HERO_IMAGE})` }} />
+
+        <div className="hero-inner container">
+          <div className="hero-left">
+            <h1 className="hero-title">Connecting clients in need to freelancers who deliver</h1>
+
+            <div className="search-card">
+              <div className="search-tabs">
+                <button className="tab active">Find talent</button>
+                <button className="tab">Browse jobs</button>
               </div>
-              <div className="col-lg-6">
-                <div className="hero-image text-center">
-                  <div style={{ 
-                    width: '400px', 
-                    height: '300px', 
-                    backgroundColor: '#6c5ce7', 
-                    borderRadius: '20px',
-                    margin: '0 auto',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '18px'
-                  }}>
-                    Hero
-                  </div>
-                </div>
+
+              <div className="search-row">
+                <input className="search-input" placeholder="Search by role, skills, or keywords" />
+                <button className="search-btn"><FaSearch /> <span>Search</span></button>
+              </div>
+
+              <div className="trusted-logos">
+                <span className="logo">Microsoft</span>
+                <span className="logo">airbnb</span>
+                <span className="logo">bissell</span>
+                <span className="logo">GLASSDOOR</span>
               </div>
             </div>
           </div>
-        </section>
+
+          <div className="hero-right" aria-hidden="true" />
+        </div>
+      </div>
+    </section>
   )
 }
 
