@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'
 import CustomNavbar from '../nav-bar/Navbar'
+import CategoriesNav from '../nav-bar/CategoriesNav'
 import Footer from '../footer/Footer'
 import Login from '../login/Login'
 
@@ -13,15 +14,21 @@ import Register from '../../Pages/Register'
 import About from '../../Pages/About/MainAbout'
 import PostJob from '../../Pages/PostJob'
 import ContactUs from '../../Pages/Contact/ContactUs'
+import JobDetails from '../../Pages/JobDetails'
+import Categories from '../../Pages/Categories'
 
 import './layout.css'
+import './layout-header.css'
 import LiftedPage from '../../Pages/Contact/LiftedPage'
 
 // Component for pages with header and footer
 function LayoutWithHeaderFooter() {
   return (
     <div className="layout-container">
-      <CustomNavbar />
+      <header className="custom-header">
+        <CustomNavbar />
+        <CategoriesNav />
+      </header>
       <main className="main-content">
         <Outlet />
       </main>
@@ -38,11 +45,12 @@ function Layout() {
         <Route path="/" element={<LayoutWithHeaderFooter />}>
           <Route index element={<Home />} />
           <Route path="jobs" element={<Jobs />} />
+          <Route path="jobs/:jobId" element={<JobDetails />} />
           <Route path="freelancers" element={<Freelancers />} />
+          <Route path="categories" element={<Categories />} />
           <Route path="how-it-works" element={<HowItWorks />} />
           <Route path="about" element={<About />} />
           <Route path="post-job" element={<PostJob />} />
-          <Route path="register" element={<Register />} />
           <Route path="contact" element={<ContactUs />} />
           <Route path="/lifted" element={<LiftedPage />} />
 
@@ -57,6 +65,7 @@ function Layout() {
         
         {/* Routes without Layout (Full page components) */}
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   )

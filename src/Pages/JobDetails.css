@@ -1,0 +1,41 @@
+.job-details-page {
+  padding: 40px 0;
+  background: white;
+  min-height: calc(100vh - 200px);
+}
+
+.job-details-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+}
+
+.job-main-content {
+  max-width: 100%;
+}
+
+.job-sidebar-wrapper {
+  /* Sidebar wrapper */
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .job-details-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .job-sidebar-wrapper {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .job-details-page {
+    padding: 24px 0;
+  }
+
+  .job-details-layout {
+    gap: 20px;
+  }
+}

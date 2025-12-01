@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './projectCard.css';
 
 const ProjectCard = ({ project }) => {
     const {
+        id,
         title,
         postedTime,
         jobType,
@@ -30,9 +32,9 @@ const ProjectCard = ({ project }) => {
 
                     {/* Title */}
                     <h3 className="project-title">
-                        <a href={link} className="project-link">
+                        <Link to={`/jobs/${id}`} className="project-link">
                             {title}
-                        </a>
+                        </Link>
                     </h3>
                 </div>
 

@@ -3,8 +3,9 @@ import ProjectCard from '../Shared/Cards/projectCard';
 import ProjectSlider from '../Shared/projectsSlider/projectSlider';
 
 function Jobs() {
-const sampleProjects = [
+  const sampleProjects = [
     {
+      id: 1,
       title: "Web Developer Needed for small fixes",
       postedTime: "1 hour ago",
       jobType: "Fixed-price",
@@ -20,6 +21,7 @@ const sampleProjects = [
       link: "#"
     },
     {
+      id: 2,
       title: "Full Stack Developer for E-commerce Website",
       postedTime: "3 hours ago",
       jobType: "Hourly",
@@ -35,6 +37,7 @@ const sampleProjects = [
       link: "#"
     },
     {
+      id: 3,
       title: "Mobile App UI/UX Designer Needed",
       postedTime: "5 hours ago",
       jobType: "Fixed-price",
@@ -53,20 +56,20 @@ const sampleProjects = [
 
   return (
     <div className="page-content">
-       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
-      {/* Projects Slider */}
-      <ProjectSlider />
-      
-      {/* Projects List */}
-      <div style={{ maxWidth: '900px', margin: '2rem auto 0' }}>
-        <h2 style={{ marginBottom: '1.5rem', color: '#001e00', fontSize: '1.5rem' }}>
-          Available Projects
-        </h2>
-        {sampleProjects.map((project, index) => (
-          <ProjectCard key={index} project={project} />
-        ))}
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
+        {/* Projects Slider */}
+        <ProjectSlider />
+
+        {/* Projects List */}
+        <div style={{ maxWidth: '900px', margin: '2rem auto 0' }}>
+          <h2 style={{ marginBottom: '1.5rem', color: '#001e00', fontSize: '1.5rem' }}>
+            Available Projects
+          </h2>
+          {sampleProjects.map((project, index) => (
+            <ProjectCard key={index} project={project} />
+          ))}
+        </div>
       </div>
-    </div>
     </div>
   )
 }

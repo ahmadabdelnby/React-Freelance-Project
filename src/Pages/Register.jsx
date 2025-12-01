@@ -1,199 +1,229 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { FaGoogle, FaFacebook } from 'react-icons/fa'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { FaApple, FaGoogle, FaEye, FaEyeSlash, FaChevronDown } from 'react-icons/fa'
+import './Register.css'
 
 function Register() {
-  const { register, handleSubmit, formState: { errors }, watch } = useForm()
-  const password = watch('password')
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    country: 'Egypt',
+    sendEmails: true,
+    agreeTerms: false
+  })
+  const [showPassword, setShowPassword] = useState(false)
 
-  const onSubmit = (data) => {
-    console.log('Register Data:', data)
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('Registration data:', formData)
+  }
+
+  const handleAppleSignup = () => {
+    console.log('Apple signup')
+  }
+
+  const handleGoogleSignup = () => {
+    console.log('Google signup')
   }
 
   return (
-    <div className="page-content">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-8 col-xl-6">
-            <div className="card shadow-lg">
-              <div className="card-body p-5">
-                <div className="text-center mb-4">
-                  <h2 className="fw-bold text-primary mb-3">Create Your Account</h2>
-                  <p className="text-muted">Join thousands of freelancers and clients</p>
-                </div>
-
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="mb-3">
-                        <label className="form-label">First Name *</label>
-                        <input
-                          type="text"
-                          className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
-                          placeholder="Enter your first name"
-                          {...register('firstName', { required: 'First name is required' })}
-                        />
-                        {errors.firstName && (
-                          <div className="invalid-feedback">{errors.firstName.message}</div>
-                        )}
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="mb-3">
-                        <label className="form-label">Last Name *</label>
-                        <input
-                          type="text"
-                          className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
-                          placeholder="Enter your last name"
-                          {...register('lastName', { required: 'Last name is required' })}
-                        />
-                        {errors.lastName && (
-                          <div className="invalid-feedback">{errors.lastName.message}</div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mb-3">
-                    <label className="form-label">Email Address *</label>
-                    <input
-                      type="email"
-                      className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                      placeholder="Enter your email"
-                      {...register('email', {
-                        required: 'Email is required',
-                        pattern: {
-                          value: /^\S+@\S+$/i,
-                          message: 'Invalid email address'
-                        }
-                      })}
-                    />
-                    {errors.email && (
-                      <div className="invalid-feedback">{errors.email.message}</div>
-                    )}
-                  </div>
-
-                  <div className="mb-3">
-                    <label className="form-label">Password *</label>
-                    <input
-                      type="password"
-                      className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                      placeholder="Create a strong password"
-                      {...register('password', {
-                        required: 'Password is required',
-                        minLength: {
-                          value: 8,
-                          message: 'Password must be at least 8 characters'
-                        }
-                      })}
-                    />
-                    {errors.password && (
-                      <div className="invalid-feedback">{errors.password.message}</div>
-                    )}
-                  </div>
-
-                  <div className="mb-3">
-                    <label className="form-label">Confirm Password *</label>
-                    <input
-                      type="password"
-                      className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
-                      placeholder="Confirm your password"
-                      {...register('confirmPassword', {
-                        required: 'Please confirm your password',
-                        validate: value => value === password || 'Passwords do not match'
-                      })}
-                    />
-                    {errors.confirmPassword && (
-                      <div className="invalid-feedback">{errors.confirmPassword.message}</div>
-                    )}
-                  </div>
-
-                  <div className="mb-3">
-                    <label className="form-label">I want to *</label>
-                    <div>
-                      <div className="form-check">
-                        <input
-                          type="radio"
-                          className="form-check-input"
-                          id="hire"
-                          value="client"
-                          {...register('userType', { required: 'Please select an option' })}
-                        />
-                        <label className="form-check-label" htmlFor="hire">
-                          Hire freelancers for my projects
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          type="radio"
-                          className="form-check-input"
-                          id="work"
-                          value="freelancer"
-                          {...register('userType', { required: 'Please select an option' })}
-                        />
-                        <label className="form-check-label" htmlFor="work">
-                          Work as a freelancer
-                        </label>
-                      </div>
-                    </div>
-                    {errors.userType && (
-                      <div className="text-danger small">{errors.userType.message}</div>
-                    )}
-                  </div>
-
-                  <div className="mb-4">
-                    <div className="form-check">
-                      <input
-                        type="checkbox"
-                        className={`form-check-input ${errors.terms ? 'is-invalid' : ''}`}
-                        id="terms"
-                        {...register('terms', { required: 'You must agree to the terms' })}
-                      />
-                      <label className="form-check-label" htmlFor="terms">
-                        I agree to the Terms of Service and Privacy Policy
-                      </label>
-                    </div>
-                    {errors.terms && (
-                      <div className="text-danger small">{errors.terms.message}</div>
-                    )}
-                  </div>
-
-                  <button type="submit" className="btn btn-primary btn-lg w-100 mb-3">
-                    Create Account
-                  </button>
-
-                  <div className="text-center mb-4">
-                    <span className="text-muted">
-                      Already have an account? <a href="/login" className="text-primary">Sign In</a>
-                    </span>
-                  </div>
-
-                  <hr className="mb-4" />
-
-                  <div className="text-center mb-3">
-                    <p className="text-muted">Or sign up with</p>
-                  </div>
-
-                  <div className="row">
-                    <div className="col">
-                      <button type="button" className="btn btn-outline-danger w-100 mb-2">
-                        <FaGoogle className="me-2" />
-                        Google
-                      </button>
-                    </div>
-                    <div className="col">
-                      <button type="button" className="btn btn-outline-primary w-100 mb-2">
-                        <FaFacebook className="me-2" />
-                        Facebook
-                      </button>
-                    </div>
-                  </div>
-                </form>
+    <div className="register-page">
+      {/* Header */}
+      <header className="register-header">
+        <div className="register-header-container">
+          <Link to="/" className="register-logo">
+            <div className="logo-container">
+              <div className="logo-icon">
+                <span className="logo-symbol">H</span>
+              </div>
+              <div className="logo-text">
+                <span className="logo-main">Herfa</span>
               </div>
             </div>
+          </Link>
+          <div className="header-actions">
+            <span className="header-text">Here to hire talent?</span>
+            <Link to="/post-job" className="btn-join-client">Join as a Client</Link>
           </div>
         </div>
-      </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="register-main">
+        <div className="register-container">
+          <h1 className="register-title">Sign up to find work you love</h1>
+
+          {/* Social Signup Buttons */}
+          <div className="social-signup-buttons">
+            <button
+              type="button"
+              className="btn-social-signup btn-apple-signup"
+              onClick={handleAppleSignup}
+            >
+              <FaApple className="social-signup-icon" />
+              Continue with Apple
+            </button>
+
+            <button
+              type="button"
+              className="btn-social-signup btn-google-signup"
+              onClick={handleGoogleSignup}
+            >
+              <FaGoogle className="social-signup-icon" />
+              Continue with Google
+            </button>
+          </div>
+
+          {/* Divider */}
+          <div className="register-divider">
+            <span>or</span>
+          </div>
+
+          {/* Registration Form */}
+          <form onSubmit={handleSubmit} className="register-form">
+            {/* Name Fields */}
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="firstName" className="form-label">First name</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  className="form-input"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="lastName" className="form-label">Last name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  className="form-input"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="form-group">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="form-input"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            {/* Password */}
+            <div className="form-group">
+              <label htmlFor="password" className="form-label">Password</label>
+              <div className="password-input-wrapper">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  className="form-input"
+                  placeholder="Password (8 or more characters)"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label="Toggle password visibility"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+            </div>
+
+            {/* Country */}
+            <div className="form-group">
+              <label htmlFor="country" className="form-label">Country</label>
+              <div className="select-wrapper">
+                <select
+                  id="country"
+                  name="country"
+                  className="form-select"
+                  value={formData.country}
+                  onChange={handleChange}
+                >
+                  <option value="Egypt">Egypt</option>
+                  <option value="United States">United States</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Germany">Germany</option>
+                </select>
+                <FaChevronDown className="select-arrow" />
+              </div>
+            </div>
+
+            {/* Email Preferences Checkbox */}
+            <div className="form-checkbox">
+              <input
+                type="checkbox"
+                id="sendEmails"
+                name="sendEmails"
+                checked={formData.sendEmails}
+                onChange={handleChange}
+              />
+              <label htmlFor="sendEmails" className="checkbox-label">
+                Send me helpful emails to find rewarding work and job leads.
+              </label>
+            </div>
+
+            {/* Terms Checkbox */}
+            <div className="form-checkbox">
+              <input
+                type="checkbox"
+                id="agreeTerms"
+                name="agreeTerms"
+                checked={formData.agreeTerms}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="agreeTerms" className="checkbox-label">
+                Yes, I understand and agree to the <Link to="/terms" className="link-green">Herfa Terms of Service</Link>, including the <Link to="/user-agreement" className="link-green">User Agreement</Link> and <Link to="/privacy" className="link-green">Privacy Policy</Link>.
+              </label>
+            </div>
+
+            {/* Submit Button */}
+            <button type="submit" className="btn-create-account">
+              Create my account
+            </button>
+          </form>
+
+          {/* Login Link */}
+          <div className="register-footer">
+            <p className="login-text">
+              Already have an account? <Link to="/login" className="link-green">Log In</Link>
+            </p>
+          </div>
+        </div>
+      </main>
     </div>
   )
 }
