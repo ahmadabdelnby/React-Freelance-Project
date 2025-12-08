@@ -6,7 +6,7 @@
 }
 
 .post-job-header {
-  background: linear-gradient(135deg, #14a800 0%, #108d00 100%);
+  background: linear-gradient(to bottom, #d8ffe3 0%, #ffffff 100%);
   padding: 48px 0;
   margin-bottom: 40px;
 }
@@ -14,13 +14,13 @@
 .post-job-title {
   font-size: 36px;
   font-weight: 700;
-  color: white;
+  color: rgb(0, 0, 0);
   margin-bottom: 8px;
 }
 
 .post-job-subtitle {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
   margin: 0;
 }
 
