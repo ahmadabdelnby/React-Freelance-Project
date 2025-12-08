@@ -1,42 +1,39 @@
-// API Configuration
-export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api'
+// src/config/api.js or src/constants/api.js
+export const BASE_URL = "http://localhost:3000/Freelancing/api/v1";
 
-// API Endpoints
+// API endpoints
 export const API_ENDPOINTS = {
-  // Authentication
-  LOGIN: '/auth/login',
-  REGISTER: '/auth/register',
-  LOGOUT: '/auth/logout',
-  
-  // Jobs
-  JOBS: '/jobs',
-  JOB_DETAILS: '/jobs/:id',
-  POST_JOB: '/jobs',
-  
-  // Freelancers
-  FREELANCERS: '/freelancers',
-  FREELANCER_PROFILE: '/freelancers/:id',
+  // Auth
+  REGISTER: `${BASE_URL}/auth/register`,
+  LOGIN: `${BASE_URL}/auth/login`,
+  PROFILE: `${BASE_URL}/auth/profile`,
+  USER_DASHBOARD: `${BASE_URL}/auth/userDashboard`,
+  ADMIN_DASHBOARD: `${BASE_URL}/auth/adminDashboard`,
   
   // Categories
-  CATEGORIES: '/categories',
+  CATEGORIES: `${BASE_URL}/categories`,
   
-  // User Profile
-  USER_PROFILE: '/user/profile',
-  UPDATE_PROFILE: '/user/profile',
+  // Specialties
+  SPECIALTIES: `${BASE_URL}/specialties`,
   
-  // Applications
-  APPLICATIONS: '/applications',
-  APPLY_JOB: '/applications',
-}
-
-// Helper function to build full URL
-export const buildUrl = (endpoint, params = {}) => {
-  let url = API_BASE_URL + endpoint
+  // Skills
+  SKILLS: `${BASE_URL}/skills`,
   
-  // Replace path parameters (e.g., :id)
-  Object.keys(params).forEach(key => {
-    url = url.replace(`:${key}`, params[key])
-  })
+  // Users
+  USERS: `${BASE_URL}/users`,
   
-  return url
-}
+  // Jobs
+  JOBS: `${BASE_URL}/jobs`,
+  
+  // Proposals
+  PROPOSALS: `${BASE_URL}/proposals`,
+  
+  // Contracts
+  CONTRACTS: `${BASE_URL}/contracts`,
+  
+  // Reviews
+  REVIEWS: `${BASE_URL}/reviews`,
+  
+  // Notifications
+  NOTIFICATIONS: `${BASE_URL}/notifications`,
+};
