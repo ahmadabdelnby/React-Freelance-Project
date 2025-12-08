@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { API_BASE_URL, API_ENDPOINTS } from '../config'
+import { BASE_URL, API_ENDPOINTS } from '../config'
 
 // Initial state
 const initialState = {
@@ -15,7 +15,7 @@ export const login = createAsyncThunk(
     'auth/login',
     async (credentials, { rejectWithValue }) => {
         try {
-            const response = await fetch(API_BASE_URL + API_ENDPOINTS.LOGIN, {
+            const response = await fetch(BASE_URL + API_ENDPOINTS.LOGIN, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export const register = createAsyncThunk(
     'auth/register',
     async (userData, { rejectWithValue }) => {
         try {
-            const response = await fetch(API_BASE_URL + API_ENDPOINTS.REGISTER, {
+            const response = await fetch(BASE_URL + API_ENDPOINTS.REGISTER, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
