@@ -108,6 +108,12 @@
   font-weight: 500;
 }
 
+.left-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+}
+
 /* Main Navigation Links */
 .main-nav-links {
   margin-left: 0;
