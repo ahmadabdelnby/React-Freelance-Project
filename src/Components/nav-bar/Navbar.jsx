@@ -66,13 +66,16 @@ function CustomNavbar() {
           </Link>
 
           {/* Mobile Toggle Button */}
-          <button
-            className="mobile-toggle-btn"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-          </button>
+          <div className="left-actions">
+            <NotificationBell />
+            <button
+              className="mobile-toggle-btn"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </div>
 
         {/* Main Navigation Links - Center */}
@@ -135,9 +138,6 @@ function CustomNavbar() {
         {/* Right Side Navigation */}
         <div className={`navbar-section navbar-right ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
           <ul className="navbar-nav right-nav">
-            <li className='nav-item'>
-              <NotificationBell/>
-            </li>
             <li className="nav-item">
               <Link to="/UserProfile" className="nav-link auth-link" onClick={closeMobileMenu}>Profile</Link>
             </li>
