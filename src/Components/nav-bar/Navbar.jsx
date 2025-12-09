@@ -11,6 +11,7 @@ import {
   FaTimes
 } from 'react-icons/fa'
 import './navbar.css'
+import NotificationBell from '../notification/notification'
 
 function CustomNavbar() {
   const [openDropdown, setOpenDropdown] = useState(null)
@@ -134,6 +135,9 @@ function CustomNavbar() {
         {/* Right Side Navigation */}
         <div className={`navbar-section navbar-right ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
           <ul className="navbar-nav right-nav">
+            <li className='nav-item'>
+              <NotificationBell/>
+            </li>
             <li className="nav-item">
               <Link to="/UserProfile" className="nav-link auth-link" onClick={closeMobileMenu}>Profile</Link>
             </li>
