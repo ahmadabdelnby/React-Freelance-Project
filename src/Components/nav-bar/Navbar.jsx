@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   FaCode,
@@ -6,19 +6,49 @@ import {
   FaCogs,
   FaChevronDown,
   FaInfoCircle,
-  FaQuestionCircle
+  FaQuestionCircle,
+  FaBars,
+  FaTimes
 } from 'react-icons/fa'
 import './navbar.css'
 
 function CustomNavbar() {
   const [openDropdown, setOpenDropdown] = useState(null)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const navbarRef = useRef(null)
 
   const toggleDropdown = (dropdown) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown)
   }
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+    setOpenDropdown(null)
+  }
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        closeMobileMenu()
+      }
+    }
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isMobileMenuOpen])
+
   return (
-    <nav className="main-navbar">
+    <nav className="main-navbar" ref={navbarRef}>
       <div className="navbar-container">
         {/* Logo Section */}
         <div className="navbar-section navbar-left">
@@ -33,19 +63,28 @@ function CustomNavbar() {
               </div>
             </div>
           </Link>
+
+          {/* Mobile Toggle Button */}
+          <button
+            className="mobile-toggle-btn"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
         </div>
 
         {/* Main Navigation Links - Center */}
-        <div className="navbar-section navbar-center">
+        <div className={`navbar-section navbar-center ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
           <ul className="navbar-nav main-nav-links">
             <li className="nav-item">
-              <Link to="/jobs" className="nav-link nav-link-custom">
+              <Link to="/jobs" className="nav-link nav-link-custom" onClick={closeMobileMenu}>
                 <FaSuitcase className="nav-icon" />
                 Jobs
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/freelancers" className="nav-link nav-link-custom">
+              <Link to="/freelancers" className="nav-link nav-link-custom" onClick={closeMobileMenu}>
                 <FaCode className="nav-icon" />
                 Freelancers
               </Link>
@@ -64,9 +103,9 @@ function CustomNavbar() {
               </button>
               {openDropdown === 'discover' && (
                 <div className="dropdown-menu-custom">
-                  <Link to="/categories" className="dropdown-item-link">Categories</Link>
-                  <Link to="/about" className="dropdown-item-link">About Us</Link>
-                  <Link to="/how-it-works" className="dropdown-item-link">How It Works</Link>
+                  <Link to="/categories" className="dropdown-item-link" onClick={closeMobileMenu}>Categories</Link>
+                  <Link to="/about" className="dropdown-item-link" onClick={closeMobileMenu}>About Us</Link>
+                  <Link to="/how-it-works" className="dropdown-item-link" onClick={closeMobileMenu}>How It Works</Link>
                 </div>
               )}
             </li>
@@ -84,8 +123,8 @@ function CustomNavbar() {
               </button>
               {openDropdown === 'support' && (
                 <div className="dropdown-menu-custom">
-                  <Link to="/contact" className="dropdown-item-link">Contact Us</Link>
-                  <Link to="/lifted" className="dropdown-item-link">Help Center</Link>
+                  <Link to="/contact" className="dropdown-item-link" onClick={closeMobileMenu}>Contact Us</Link>
+                  <Link to="/lifted" className="dropdown-item-link" onClick={closeMobileMenu}>Help Center</Link>
                 </div>
               )}
             </li>
@@ -93,19 +132,22 @@ function CustomNavbar() {
         </div>
 
         {/* Right Side Navigation */}
-        <div className="navbar-section navbar-right">
+        <div className={`navbar-section navbar-right ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
           <ul className="navbar-nav right-nav">
             <li className="nav-item">
-              <Link to="/register" className="nav-link auth-link">Register</Link>
+              <Link to="/UserProfile" className="nav-link auth-link" onClick={closeMobileMenu}>Profile</Link>
             </li>
             <li className="nav-item">
-              <Link to="/login" className="nav-link auth-link">Login</Link>
+              <Link to="/register" className="nav-link auth-link" onClick={closeMobileMenu}>Register</Link>
             </li>
             <li className="nav-item">
-              <a href="/ar" className="nav-link language-link">العربية</a>
+              <Link to="/login" className="nav-link auth-link" onClick={closeMobileMenu}>Login</Link>
             </li>
             <li className="nav-item">
-              <Link to="/post-job" className="btn btn-primary post-job-btn">
+              <a href="/ar" className="nav-link language-link" onClick={closeMobileMenu}>العربية</a>
+            </li>
+            <li className="nav-item">
+              <Link to="/post-job" className="btn btn-primary post-job-btn" onClick={closeMobileMenu}>
                 Post Job
               </Link>
             </li>
