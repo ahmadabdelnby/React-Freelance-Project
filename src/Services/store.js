@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './Authentication/AuthSlice'
+import categoriesReducer from './Categories/CategoriesSlice'
 
 export const store = configureStore({
   reducer: {
@@ -7,7 +8,7 @@ export const store = configureStore({
     // Add other reducers here as you create them
     // jobs: jobsReducer,
     // freelancers: freelancersReducer,
-    // categories: categoriesReducer,
+    categories: categoriesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
