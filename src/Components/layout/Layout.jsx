@@ -20,6 +20,7 @@ import Categories from '../../Pages/Categories'
 import './layout.css'
 import './layout-header.css'
 import LiftedPage from '../../Pages/Contact/LiftedPage'
+import UserProfile from '../../Pages/user-profile/UserProfile'
 
 // Component for pages with header and footer
 function LayoutWithHeaderFooter() {
@@ -53,6 +54,7 @@ function Layout() {
           <Route path="post-job" element={<PostJob />} />
           <Route path="contact" element={<ContactUs />} />
           <Route path="/lifted" element={<LiftedPage />} />
+          <Route path="/UserProfile" element={<UserProfile />} />
 
           {/* 404 Route with Layout */}
           <Route path="*" element={
